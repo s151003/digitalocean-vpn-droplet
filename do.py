@@ -5,17 +5,14 @@ class DO():
         self.token = token
         self.manager = docean.Manager(token=self.token)
 
-    def get_keys(self):
-        return self.manager.get_all_sshkeys()
-
     def create_droplet(self):
-        keys = self.get_keys()
+        keys = self.manager.get_all_sshkeys()
         droplet = docean.Droplet(token=self.token,
-                                name='droplet1',
+                                name='DropletWithSSHKeys',
                                 region='ams3',
                                 image='ubuntu-18-04-x64',
                                 size_slug='512mb',
-                                ssh_key=keys,
+                                ssh_keys=keys,
                                 tags=["vpn-server"],
                                 backups=False)
         droplet.create()
