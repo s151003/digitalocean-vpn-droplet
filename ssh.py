@@ -1,5 +1,6 @@
 import paramiko
 import time
+import os
 
 class SSH():
     def __init__(self,hostname,user_name,private_key):
@@ -13,7 +14,7 @@ class SSH():
     def excute_command(self,command):
         stdin, stdout, stderr = self.client.exec_command(command)
         for line in stdout:
-            print('... ' + line.strip('\n'))
+            print(line.strip('\n'))
     
     def close(self):
-        self.close()
+        self.client.close()
