@@ -35,6 +35,13 @@ def setup_droplet():
     ssh.excute_command("wget https://raw.githubusercontent.com/s151003/openvpn-install/master/openvpn-install.sh && chmod 777 openvpn-install.sh && bash openvpn-install.sh")
     ssh.close()
 
+def disp_window():
+    app = wx.App()
+    frame = wx.Frame(None, -1, 'DigitalOcean OpenVPN Setup',size=(500,500))
+    frame.SetBackgroundColour((255,255,255))
+    frame.Show()
+    app.MainLoop()
+
 
 if __name__ == '__main__':
-    setup_droplet()
+    disp_window()
