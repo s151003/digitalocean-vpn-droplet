@@ -9,9 +9,13 @@ class SSH():
         self.private_key = private_key 
         self.client = paramiko.SSHClient()
         self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+    def connect(self):
         self.client.connect(self.hostname, username=self.user_name, key_filename=self.private_key)
-    
+        return True
+
     def excute_command(self,command):
+        self.connect()
         stdin, stdout, stderr = self.client.exec_command(command)
         for line in stdout:
             print(line.strip('\n'))
